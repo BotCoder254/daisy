@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Stack Developer Portfolio - Kenya</title>
+    
+    <!-- Tailwind CSS and DaisyUI CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- DevIcon for programming language icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    
+    <!-- GitHub Calendar -->
+    <script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css" />
+
+    <style>
+        .animate-bounce-slow {
+            animation: bounce 3s infinite;
+        }
+        .typewriter {
+            overflow: hidden;
+            border-right: .15em solid;
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: currentColor }
+        }
+        .animate-fade-in {
+            animation: fadeIn 1s ease-in forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .hero-content {
+                padding-top: 6rem !important;
+                flex-direction: column !important;
+                gap: 2rem !important;
+            }
+
+            .hero-content .avatar {
+                display: none !important;
+            }
+
+            .hero-content > div:last-child {
+                text-align: center !important;
+                width: 100% !important;
+            }
+
+            .hero .stats {
+                width: 100% !important;
+            }
+            .avatar img {
+                width: 200px !important;
+                height: 200px !important;
+            }
+            .stats {
+                flex-direction: column !important;
+            }
+            .stats > .stat {
+                border-right: none !important;
+                border-bottom: 1px solid var(--fallback-bc,oklch(var(--bc)/0.1)) !important;
+            }
+            .stats > .stat:last-child {
+                border-bottom: none !important;
+            }
+            .calendar {
+                max-width: 100% !important;
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            .grid-cols-3 {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+            .card-body {
+                padding: 1rem !important;
+            }
+            .badge {
+                white-space: nowrap !important;
+                overflow: hidden !important;
+                text-overflow: ellipsis !important;
+                max-width: 150px !important;
+            }
+            .join {
+                flex-wrap: wrap !important;
+                gap: 0.5rem !important;
+            }
+            .join > * {
+                flex: 1 1 auto !important;
+                min-width: 120px !important;
+            }
+            .tabs {
+                flex-wrap: wrap !important;
+                gap: 0.5rem !important;
+            }
+            .tab {
+                flex: 1 1 auto !important;
+                min-width: 120px !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content {
+                padding-top: 2rem !important;
+            }
+            .avatar img {
+                width: 150px !important;
+                height: 150px !important;
+            }
+            .text-5xl {
+                font-size: 2.5rem !important;
+                line-height: 1.2 !important;
+            }
+            .grid-cols-2 {
+                grid-template-columns: 1fr !important;
+            }
+            .card {
+                margin-bottom: 1rem !important;
+            }
+            .join > * {
+                min-width: 100% !important;
+                margin-bottom: 0.5rem !important;
+            }
+            .timeline.timeline-vertical {
+                --timeline-divider-gap: 1rem !important;
+            }
+            .timeline-start, .timeline-end {
+                width: 100% !important;
+                text-align: left !important;
+                padding-left: 1.5rem !important;
+            }
+            .calendar-graph text.wday,
+            .calendar-graph text.month {
+                font-size: 8px !important;
+            }
+            .calendar-graph .contribution-graph {
+                transform: scale(0.8) !important;
+                transform-origin: left !important;
+            }
+        }
+
+        /* Fix GitHub Calendar */
+        .js-calendar-graph-svg {
+            max-width: 100% !important;
+        }
+        .calendar {
+            font-family: inherit !important;
+        }
+        .calendar-graph text.wday,
+        .calendar-graph text.month {
+            fill: currentColor !important;
+        }
+
+        /* Fix Project Cards */
+        #projects-grid .card {
+            height: 100% !important;
+            display: flex !important;
+            flex-direction: column !important;
+        }
+        #projects-grid .card-body {
+            flex: 1 !important;
+            display: flex !important;
+            flex-direction: column !important;
+        }
+        #projects-grid .card-actions {
+            margin-top: auto !important;
+        }
+
+        /* Fix Form Elements */
+        .form-control {
+            width: 100% !important;
+        }
+        .input, .textarea {
+            width: 100% !important;
+            max-width: 100% !important;
+        }
+        .indicator {
+            width: 100% !important;
+        }
+        .indicator-item {
+            right: -0.5rem !important;
+        }
+
+        /* Fix Navigation */
+        .drawer-side {
+            overflow-y: auto !important;
+            -webkit-overflow-scrolling: touch !important;
+        }
+        .drawer-side .menu {
+            padding-top: 1rem !important;
+        }
+        .drawer-side .menu-title {
+            padding: 0.5rem 1rem !important;
+        }
+
+        /* Improved Hero Section Responsiveness */
+        .hero-content {
+            gap: 2rem !important;
+            padding: 2rem !important;
+            flex-direction: column-reverse !important;
+        }
+
+        @media (min-width: 1024px) {
+            .hero-content {
+                flex-direction: row-reverse !important;
+                padding: 4rem 2rem !important;
+            }
+        }
+
+        .hero .avatar img {
+            width: 200px !important;
+            height: 200px !important;
+            transition: all 0.3s ease !important;
+        }
+
+        @media (min-width: 768px) {
+            .hero .avatar img {
+                width: 256px !important;
+                height: 256px !important;
+            }
+        }
+
+        /* Improved Navigation Responsiveness */
+        .navbar {
+            padding: 0.5rem !important;
+            height: auto !important;
+            min-height: 4rem !important;
+        }
+
+        .navbar-start {
+            width: auto !important;
+        }
+
+        @media (max-width: 1023px) {
+            .navbar {
+                padding: 0.5rem 1rem !important;
+            }
+            
+            .drawer-side {
+                padding-top: 1rem !important;
+            }
+
+            .drawer-side .menu {
+                padding: 1rem !important;
+            }
+
+            .drawer-side .menu-title {
+                padding: 0.5rem !important;
+            }
+
+            .drawer-side a {
+                padding: 0.75rem 1rem !important;
+            }
+        }
+
+        /* Improved Section Responsiveness */
+        section {
+            padding: 4rem 1rem !important;
+        }
+
+        @media (min-width: 768px) {
+            section {
+                padding: 4rem 2rem !important;
+            }
+        }
+
+        /* Card Grid Responsiveness */
+        .grid {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+            gap: 1.5rem !important;
+        }
+
+        /* Stats Responsiveness */
+        .stats {
+            flex-direction: column !important;
+        }
+
+        @media (min-width: 768px) {
+            .stats {
+                flex-direction: row !important;
+            }
+        }
+
+        /* Form Responsiveness */
+        .form-control {
+            width: 100% !important;
+        }
+
+        .input, .textarea {
+            width: 100% !important;
+            max-width: 100% !important;
+        }
+
+        /* Timeline Responsiveness */
+        .timeline.timeline-vertical {
+            --timeline-divider-gap: 1rem !important;
+        }
+
+        @media (max-width: 767px) {
+            .timeline-start, .timeline-end {
+                width: 100% !important;
+                text-align: left !important;
+                padding-left: 1.5rem !important;
+            }
+        }
+
+        /* Improved Mobile Menu */
+        .drawer-side {
+            background-color: var(--b3) !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+        }
+
+        .drawer-side .menu {
+            background: transparent !important;
+        }
+
+        .drawer-side .menu a {
+            margin-bottom: 0.5rem !important;
+            border-radius: 0.5rem !important;
+        }
+
+        .drawer-side .menu a:hover {
+            background-color: var(--p) !important;
+            color: var(--pc) !important;
+        }
+
+        /* Fix GitHub Calendar on Mobile */
+        .calendar-graph {
+            overflow-x: auto !important;
+            -webkit-overflow-scrolling: touch !important;
+        }
+
+        .js-calendar-graph-svg {
+            min-width: 730px !important;
+        }
+
+        @media (max-width: 767px) {
+            .calendar-graph {
+                padding: 0.5rem !important;
+            }
+        }
+
+        /* Fix Blur and Background Issues */
+        .navbar {
+            background-color: rgba(var(--b3), 0.95) !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+        }
+
+        .drawer-side {
+            background-color: var(--b3) !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+        }
+
+        .bg-opacity-90 {
+            --tw-bg-opacity: 1 !important;
+        }
+
+        /* Fix Hero Image on Mobile */
+        @media (max-width: 768px) {
+            .hero-content {
+                padding-top: 6rem !important;
+                flex-direction: column !important;
+                gap: 2rem !important;
+            }
+
+            .hero-content .avatar {
+                display: none !important;
+            }
+
+            .hero-content > div:last-child {
+                text-align: center !important;
+                width: 100% !important;
+            }
+
+            .hero .stats {
+                width: 100% !important;
+            }
+        }
+
+        /* Fix GitHub Contribution Graph */
+        .calendar {
+            width: 100% !important;
+            overflow: hidden !important;
+            border-radius: 0.5rem !important;
+            background: var(--b1) !important;
+        }
+
+        .calendar-graph {
+            padding: 1rem !important;
+            width: 100% !important;
+            overflow-x: auto !important;
+            -webkit-overflow-scrolling: touch !important;
+            scrollbar-width: thin !important;
+            scrollbar-color: var(--p) var(--b2) !important;
+        }
+
+        .calendar-graph::-webkit-scrollbar {
+            height: 6px !important;
+        }
+
+        .calendar-graph::-webkit-scrollbar-track {
+            background: var(--b2) !important;
+            border-radius: 3px !important;
+        }
+
+        .calendar-graph::-webkit-scrollbar-thumb {
+            background: var(--p) !important;
+            border-radius: 3px !important;
+        }
+
+        .js-calendar-graph-svg {
+            min-width: 730px !important;
+            height: auto !important;
+            padding: 0.5rem !important;
+        }
+
+        @media (max-width: 767px) {
+            .calendar {
+                margin: 0 -1rem !important;
+                border-radius: 0 !important;
+            }
+
+            .calendar-graph {
+                padding: 0.5rem !important;
+            }
+
+            .calendar-graph text.wday,
+            .calendar-graph text.month {
+                font-size: 9px !important;
+            }
+        }
+
+        /* Fix Section Backgrounds */
+        section {
+            background-color: var(--b2) !important;
+            position: relative !important;
+            z-index: 1 !important;
+        }
+
+        .card {
+            background-color: var(--b1) !important;
+            border: 1px solid var(--b3) !important;
+        }
+
+        /* Ensure proper stacking */
+        .navbar {
+            z-index: 1000 !important;
+        }
+
+        .drawer-side {
+            z-index: 1001 !important;
+        }
+
+        .drawer-overlay {
+            z-index: 999 !important;
+        }
+
+        /* Fix mobile menu background */
+        .drawer-side .menu {
+            background-color: var(--b2) !important;
+        }
+
+        .drawer-side .menu a {
+            background-color: transparent !important;
+        }
+
+        .drawer-side .menu a:hover {
+            background-color: var(--p) !important;
+            color: var(--pc) !important;
+        }
+
+        /* Fix Mobile Sidebar */
+        .drawer-side {
+            background: var(--b1) !important;
+            border-right: 1px solid var(--b3) !important;
+        }
+
+        .drawer-side .menu {
+            background: transparent !important;
+            padding: 1rem !important;
+        }
+
+        .drawer-side .menu a {
+            background: transparent !important;
+            margin-bottom: 0.5rem !important;
+            border-radius: 0.5rem !important;
+            color: var(--bc) !important;
+        }
+
+        .drawer-side .menu a:hover {
+            background: var(--p) !important;
+            color: var(--pc) !important;
+        }
+
+        /* Mobile Bottom Navigation */
+        .bottom-nav {
+            display: none !important;
+        }
+
+        @media (max-width: 768px) {
+            .drawer-side {
+                display: none !important;
+            }
+
+            .bottom-nav {
+                display: flex !important;
+                position: fixed !important;
+                bottom: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                background: var(--b1) !important;
+                padding: 0.5rem !important;
+                border-top: 1px solid var(--b3) !important;
+                z-index: 50 !important;
+                justify-content: space-around !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+            }
+
+            .bottom-nav a {
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                padding: 0.5rem !important;
+                color: var(--bc) !important;
+                font-size: 0.75rem !important;
+                transition: all 0.3s ease !important;
+            }
+
+            .bottom-nav a i {
+                font-size: 1.25rem !important;
+                margin-bottom: 0.25rem !important;
+            }
+
+            .bottom-nav a:hover, .bottom-nav a.active {
+                color: var(--p) !important;
+            }
+
+            /* Adjust footer for bottom nav */
+            footer {
+                margin-bottom: 4rem !important;
+                padding-bottom: 2rem !important;
+            }
+
+            /* Hide desktop menu button */
+            .lg:hidden {
+                display: none !important;
+            }
+        }
+
+        /* Responsive Footer */
+        @media (max-width: 640px) {
+            footer .grid-flow-col {
+                grid-auto-flow: row !important;
+                gap: 1rem !important;
+            }
+
+            footer .join {
+                flex-wrap: wrap !important;
+                justify-content: center !important;
+                gap: 0.5rem !important;
+            }
+
+            footer .join-item {
+                flex: 0 1 auto !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress bar -->
+    <div class="fixed top-0 left-0 w-full h-1 bg-base-300 z-50">
+        <div id="scroll-progress" class="h-full bg-primary" style="width: 0%"></div>
+    </div>
+
+    <!-- Navbar using DaisyUI navbar component -->
+    <div class="drawer">
+        <input id="my-drawer-3" type="checkbox" class="drawer-toggle" /> 
+        <div class="drawer-content flex flex-col">
+            <!-- Navbar -->
+            <div class="w-full navbar bg-base-300 fixed top-0 z-40 backdrop-blur-lg bg-opacity-90">
+                <div class="flex-none lg:hidden">
+                    <label for="my-drawer-3" class="btn btn-square btn-ghost">
+                        <i class="fas fa-bars"></i>
+                    </label>
+                </div> 
+                <div class="flex-1 px-2 mx-2">
+                    <div class="flex items-center gap-2">
+                        <div class="avatar online indicator">
+                            <span class="indicator-item indicator-start badge badge-primary badge-xs"></span>
+                            <div class="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                                <img src="https://github.com/BotCoder254.png" alt="Logo" />
+                            </div>
+                        </div>
+                        <div>
+                            <span class="text-lg font-bold">BotCoder254</span>
+                            <div class="badge badge-sm badge-outline">Full Stack Dev</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-none hidden lg:block">
+                    <ul class="menu menu-horizontal gap-2">
+                        <li>
+                            <a href="#home" class="btn btn-ghost btn-sm gap-2 hover:bg-primary hover:text-primary-content">
+                                <i class="fas fa-home"></i>Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#about" class="btn btn-ghost btn-sm gap-2 hover:bg-primary hover:text-primary-content">
+                                <i class="fas fa-user"></i>About
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#projects" class="btn btn-ghost btn-sm gap-2 hover:bg-primary hover:text-primary-content">
+                                <i class="fas fa-project-diagram"></i>Projects
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#contact" class="btn btn-ghost btn-sm gap-2 hover:bg-primary hover:text-primary-content">
+                                <i class="fas fa-envelope"></i>Contact
+                            </a>
+                        </li>
+                        <div class="divider divider-horizontal"></div>
+                        <li>
+                            <label class="swap swap-rotate btn btn-ghost btn-sm btn-circle">
+                                <input type="checkbox" onclick="toggleTheme()" />
+                                <i class="fas fa-sun swap-on"></i>
+                                <i class="fas fa-moon swap-off"></i>
+                            </label>
+                        </li>
+                        <li>
+                            <a href="https://github.com/BotCoder254" target="_blank" class="btn btn-primary btn-sm gap-2">
+                                <i class="fab fa-github"></i>GitHub
+                                <div class="badge badge-sm">
+                                    <i class="fas fa-star mr-1"></i><span id="featured-stars-count">0</span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <!-- Hero Section using DaisyUI hero component -->
+            <div class="hero min-h-screen bg-base-200" id="home">
+                <div class="hero-content flex-col lg:flex-row-reverse gap-8 mt-16">
+                    <div class="avatar animate-bounce-slow">
+                        <div class="w-64 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                            <img id="profile-image" src="https://github.com/BotCoder254.png" alt="Profile" />
+                        </div>
+                    </div>
+                    <div class="max-w-md">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <div class="badge badge-secondary gap-2">
+                                <span class="animate-pulse w-2 h-2 bg-white rounded-full"></span>
+                                Available for hire
+                            </div>
+                            <div class="badge badge-primary">Full Stack</div>
+                            <div class="badge badge-accent">JavaScript</div>
+                        </div>
+                        <h1 class="text-5xl font-bold mb-2">Hi, I'm Telvin Teum</h1>
+                        <div class="typewriter text-2xl text-primary font-semibold mb-4">Full Stack JavaScript Developer</div>
+                        <p class="py-4">Passionate developer from Kenya, creating innovative web solutions with modern technologies.</p>
+                        <div class="flex gap-4 mb-8">
+                            <a href="https://github.com/BotCoder254" class="btn btn-primary">
+                                <i class="fab fa-github mr-2"></i>GitHub
+                            </a>
+                            <a href="#contact" class="btn btn-outline">
+                                <i class="fas fa-envelope mr-2"></i>Contact Me
+                            </a>
+                        </div>
+                        <div class="stats stats-vertical lg:stats-horizontal shadow bg-base-100">
+                            <div class="stat">
+                                <div class="stat-figure text-primary">
+                                    <i class="fas fa-code-branch text-3xl"></i>
+                                </div>
+                                <div class="stat-title">Projects</div>
+                                <div class="stat-value text-primary" id="projects-count">0</div>
+                                <div class="stat-desc" id="projects-desc">Public Repositories</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-figure text-secondary">
+                                    <i class="fas fa-star text-3xl"></i>
+                                </div>
+                                <div class="stat-title">Stars</div>
+                                <div class="stat-value text-secondary" id="featured-stars-count">15</div>
+                                <div class="stat-desc" id="stars-desc">Total Stars Earned</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-figure text-accent">
+                                    <i class="fas fa-users text-3xl"></i>
+                                </div>
+                                <div class="stat-title">Followers</div>
+                                <div class="stat-value text-accent" id="followers-count">0</div>
+                                <div class="stat-desc" id="followers-desc">GitHub Followers</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GitHub Activity Section -->
+            <section class="py-16 bg-base-100">
+                <div class="container mx-auto px-4">
+                    <div class="text-center mb-12">
+                        <div class="flex flex-col items-center gap-2">
+                            <h2 class="text-4xl font-bold inline-block relative">
+                                GitHub Activity
+                                <span class="absolute bottom-0 left-0 w-full h-1 bg-primary transform scale-x-0 transition-transform group-hover:scale-x-100"></span>
+                            </h2>
+                            <div class="badge badge-primary badge-outline gap-2">
+                                <i class="fab fa-github"></i>
+                                <span id="total-contributions">0</span> contributions in the last year
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card bg-base-200 shadow-xl">
+                        <div class="card-body">
+                            <div class="tabs tabs-boxed justify-center mb-6">
+                                <a class="tab tab-active gap-2"><i class="fas fa-chart-line"></i>Contributions</a>
+                                <a class="tab gap-2"><i class="fas fa-code-commit"></i>Activity</a>
+                                <a class="tab gap-2"><i class="fas fa-code"></i>Languages</a>
+                            </div>
+                            <!-- GitHub Calendar -->
+                            <div class="calendar mb-8 bg-base-100 p-4 rounded-box">
+                                <!-- Loading animation -->
+                                <div class="loading loading-dots loading-lg"></div>
+                            </div>
+                            <!-- GitHub Stats -->
+                            <div class="stats shadow stats-vertical lg:stats-horizontal w-full bg-base-100">
+                                <div class="stat">
+                                    <div class="stat-figure text-primary">
+                                        <div class="avatar">
+                                            <div class="w-16 rounded-full ring ring-primary ring-offset-2">
+                                                <img src="https://github.com/BotCoder254.png" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="stat-title">Total Stars</div>
+                                    <div class="stat-value text-primary" id="total-stars">0</div>
+                                    <div class="stat-desc">Across all repositories</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-figure text-secondary">
+                                        <i class="fas fa-code-branch text-3xl"></i>
+                                    </div>
+                                    <div class="stat-title">Total Forks</div>
+                                    <div class="stat-value text-secondary" id="total-forks">0</div>
+                                    <div class="stat-desc">From all projects</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-figure text-accent">
+                                        <i class="fas fa-code text-3xl"></i>
+                                    </div>
+                                    <div class="stat-title">Languages</div>
+                                    <div class="stat-value text-accent" id="total-languages">0</div>
+                                    <div class="stat-desc">Used in projects</div>
+                                </div>
+                            </div>
+                            <div class="divider">GitHub Stats</div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="card bg-base-100 shadow-lg hover:shadow-xl transition-shadow">
+                                    <div class="card-body">
+                                        <img class="w-full rounded-lg" src="https://github-readme-stats.vercel.app/api?username=BotCoder254&show_icons=true&theme=transparent" alt="GitHub Stats" />
+                                    </div>
+                                </div>
+                                <div class="card bg-base-100 shadow-lg hover:shadow-xl transition-shadow">
+                                    <div class="card-body">
+                                        <img class="w-full rounded-lg" src="https://github-readme-streak-stats.herokuapp.com/?user=BotCoder254&theme=transparent" alt="GitHub Streak" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section using DaisyUI cards and stats -->
+            <section id="about" class="py-16 bg-base-200">
+                <div class="container mx-auto px-4">
+                    <div class="text-center mb-12">
+                        <h2 class="text-4xl font-bold inline-block relative">
+                            About Me
+                            <span class="absolute bottom-0 left-0 w-full h-1 bg-primary transform scale-x-0 transition-transform group-hover:scale-x-100"></span>
+                        </h2>
+                    </div>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="card bg-base-100 shadow-xl">
+                            <div class="card-body">
+                                <h3 class="card-title flex items-center gap-2">
+                                    <i class="fas fa-code text-primary"></i>
+                                    Technical Skills
+                                </h3>
+                                <div class="divider"></div>
+                                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                                    <div class="flex flex-col items-center gap-2 hover:transform hover:scale-105 transition-transform">
+                                        <div class="radial-progress text-primary" style="--value:90;">90%</div>
+                                        <i class="devicon-javascript-plain colored text-4xl"></i>
+                                        <span class="badge badge-lg">JavaScript</span>
+                                    </div>
+                                    <div class="flex flex-col items-center gap-2 hover:transform hover:scale-105 transition-transform">
+                                        <div class="radial-progress text-primary" style="--value:85;">85%</div>
+                                        <i class="devicon-nodejs-plain colored text-4xl"></i>
+                                        <span class="badge badge-lg badge-primary">Node.js</span>
+                                    </div>
+                                    <div class="flex flex-col items-center gap-2 hover:transform hover:scale-105 transition-transform">
+                                        <div class="radial-progress text-secondary" style="--value:80;">80%</div>
+                                        <i class="devicon-react-original colored text-4xl"></i>
+                                        <span class="badge badge-lg badge-secondary">React</span>
+                                    </div>
+                                    <div class="flex flex-col items-center gap-2 hover:transform hover:scale-105 transition-transform">
+                                        <div class="radial-progress text-accent" style="--value:75;">75%</div>
+                                        <i class="devicon-mongodb-plain colored text-4xl"></i>
+                                        <span class="badge badge-lg badge-accent">MongoDB</span>
+                                    </div>
+                                    <div class="flex flex-col items-center gap-2 hover:transform hover:scale-105 transition-transform">
+                                        <div class="radial-progress" style="--value:70;">70%</div>
+                                        <i class="devicon-express-original text-4xl"></i>
+                                        <span class="badge badge-lg">Express.js</span>
+                                    </div>
+                                    <div class="flex flex-col items-center gap-2 hover:transform hover:scale-105 transition-transform">
+                                        <div class="radial-progress text-primary" style="--value:95;">95%</div>
+                                        <i class="devicon-html5-plain colored text-4xl"></i>
+                                        <span class="badge badge-lg badge-primary">HTML5</span>
+                                    </div>
+                                    <div class="flex flex-col items-center gap-2 hover:transform hover:scale-105 transition-transform">
+                                        <div class="radial-progress text-secondary" style="--value:90;">90%</div>
+                                        <i class="devicon-css3-plain colored text-4xl"></i>
+                                        <span class="badge badge-lg badge-secondary">CSS3</span>
+                                    </div>
+                                    <div class="flex flex-col items-center gap-2 hover:transform hover:scale-105 transition-transform">
+                                        <div class="radial-progress text-accent" style="--value:85;">85%</div>
+                                        <i class="devicon-git-plain colored text-4xl"></i>
+                                        <span class="badge badge-lg badge-accent">Git</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card bg-base-100 shadow-xl">
+                            <div class="card-body">
+                                <h3 class="card-title flex items-center gap-2">
+                                    <i class="fas fa-user-tie text-primary"></i>
+                                    Experience
+                                </h3>
+                                <div class="divider"></div>
+                                <div class="prose" id="bio-content">
+                                    <div class="loading loading-spinner loading-lg"></div>
+                                </div>
+                                <div class="mt-4">
+                                    <ul class="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
+                                        <li>
+                                            <div class="timeline-middle">
+                                                <i class="fas fa-circle text-primary"></i>
+                                            </div>
+                                            <div class="timeline-start md:text-end mb-10">
+                                                <time class="font-mono italic">2023 - Present</time>
+                                                <div class="text-lg font-black">Full Stack Developer</div>
+                                                Building modern web applications using MERN stack
+                                            </div>
+                                            <hr class="bg-primary"/>
+                                        </li>
+                                        <li>
+                                            <hr class="bg-primary"/>
+                                            <div class="timeline-middle">
+                                                <i class="fas fa-circle text-primary"></i>
+                                            </div>
+                                            <div class="timeline-end mb-10">
+                                                <time class="font-mono italic">2022 - 2023</time>
+                                                <div class="text-lg font-black">Frontend Developer</div>
+                                                Creating responsive and interactive user interfaces
+                                            </div>
+                                            <hr class="bg-primary"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="py-16 bg-base-100">
+                <div class="container mx-auto px-4">
+                    <div class="text-center mb-12">
+                        <div class="flex flex-col items-center gap-2">
+                            <h2 class="text-4xl font-bold inline-block relative">
+                                Featured Projects
+                                <span class="absolute bottom-0 left-0 w-full h-1 bg-primary transform scale-x-0 transition-transform group-hover:scale-x-100"></span>
+                            </h2>
+                            <div class="stats shadow bg-base-200">
+                                <div class="stat place-items-center">
+                                    <div class="stat-title">Total Projects</div>
+                                    <div class="stat-value text-primary" id="featured-projects-count">0</div>
+                                    <div class="stat-desc">Featured Repositories</div>
+                                </div>
+                                <div class="stat place-items-center">
+                                    <div class="stat-title">Total Stars</div>
+                                    <div class="stat-value text-secondary" id="featured-stars-count">0</div>
+                                    <div class="stat-desc">From Featured Projects</div>
+                                </div>
+                                <div class="stat place-items-center">
+                                    <div class="stat-title">Languages</div>
+                                    <div class="stat-value text-accent" id="featured-languages-count">0</div>
+                                    <div class="stat-desc">Used in Projects</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-center mb-8">
+                        <div class="join shadow-lg bg-base-200">
+                            <button class="join-item btn btn-active gap-2" onclick="filterProjects('all')">
+                                <i class="fas fa-globe"></i>All Projects
+                                <div class="badge badge-sm badge-primary" id="all-projects-count">0</div>
+                            </button>
+                            <button class="join-item btn gap-2" onclick="filterProjects('web')">
+                                <i class="fas fa-laptop-code"></i>Web Apps
+                                <div class="badge badge-sm" id="web-projects-count">0</div>
+                            </button>
+                            <button class="join-item btn gap-2" onclick="filterProjects('api')">
+                                <i class="fas fa-server"></i>APIs
+                                <div class="badge badge-sm" id="api-projects-count">0</div>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="tabs tabs-boxed justify-center mb-6">
+                        <a class="tab tab-active gap-2" onclick="sortProjects('stars')">
+                            <i class="fas fa-star"></i>Most Starred
+                        </a>
+                        <a class="tab gap-2" onclick="sortProjects('recent')">
+                            <i class="fas fa-clock"></i>Recently Updated
+                        </a>
+                        <a class="tab gap-2" onclick="sortProjects('forks')">
+                            <i class="fas fa-code-branch"></i>Most Forked
+                        </a>
+                    </div>
+                    <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="card bg-base-100 shadow-xl skeleton">
+                            <div class="h-48 rounded-t-xl bg-base-200 animate-pulse"></div>
+                            <div class="card-body">
+                                <div class="h-4 w-3/4 bg-base-200 rounded animate-pulse"></div>
+                                <div class="h-4 w-full bg-base-200 rounded animate-pulse"></div>
+                                <div class="h-4 w-2/3 bg-base-200 rounded animate-pulse"></div>
+                                <div class="flex gap-2 mt-4">
+                                    <div class="h-6 w-16 bg-base-200 rounded-full animate-pulse"></div>
+                                    <div class="h-6 w-16 bg-base-200 rounded-full animate-pulse"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card bg-base-100 shadow-xl skeleton">
+                            <div class="h-48 rounded-t-xl bg-base-200 animate-pulse"></div>
+                            <div class="card-body">
+                                <div class="h-4 w-3/4 bg-base-200 rounded animate-pulse"></div>
+                                <div class="h-4 w-full bg-base-200 rounded animate-pulse"></div>
+                                <div class="h-4 w-2/3 bg-base-200 rounded animate-pulse"></div>
+                                <div class="flex gap-2 mt-4">
+                                    <div class="h-6 w-16 bg-base-200 rounded-full animate-pulse"></div>
+                                    <div class="h-6 w-16 bg-base-200 rounded-full animate-pulse"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card bg-base-100 shadow-xl skeleton">
+                            <div class="h-48 rounded-t-xl bg-base-200 animate-pulse"></div>
+                            <div class="card-body">
+                                <div class="h-4 w-3/4 bg-base-200 rounded animate-pulse"></div>
+                                <div class="h-4 w-full bg-base-200 rounded animate-pulse"></div>
+                                <div class="h-4 w-2/3 bg-base-200 rounded animate-pulse"></div>
+                                <div class="flex gap-2 mt-4">
+                                    <div class="h-6 w-16 bg-base-200 rounded-full animate-pulse"></div>
+                                    <div class="h-6 w-16 bg-base-200 rounded-full animate-pulse"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-8">
+                        <button class="btn btn-primary gap-2 group" onclick="loadMoreProjects()">
+                            <i class="fas fa-plus group-hover:rotate-180 transition-transform"></i>
+                            Load More Projects
+                            <span class="loading loading-spinner loading-xs"></span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="py-16 bg-base-200">
+                <div class="container mx-auto px-4">
+                    <div class="text-center mb-12">
+                        <div class="flex flex-col items-center gap-2">
+                            <h2 class="text-4xl font-bold inline-block relative">
+                                Get In Touch
+                                <span class="absolute bottom-0 left-0 w-full h-1 bg-primary transform scale-x-0 transition-transform group-hover:scale-x-100"></span>
+                            </h2>
+                            <div class="badge badge-primary badge-outline gap-2">
+                                <i class="fas fa-envelope"></i>
+                                Let's work together
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                        <div class="card bg-base-100 shadow-xl">
+                            <div class="card-body">
+                                <h3 class="card-title flex items-center gap-2 text-primary">
+                                    <i class="fas fa-info-circle text-xl"></i>
+                                    Contact Information
+                                </h3>
+                                <div class="divider"></div>
+                                <div class="space-y-6">
+                                    <div class="flex items-center gap-4 hover:transform hover:translate-x-2 transition-transform">
+                                        <div class="btn btn-circle btn-primary btn-outline">
+                                            <i class="fas fa-envelope"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-primary">Email</h4>
+                                            <p class="link link-hover">telvivaztelvin@gmail.com</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-4 hover:transform hover:translate-x-2 transition-transform">
+                                        <div class="btn btn-circle btn-primary btn-outline">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-primary">Location</h4>
+                                            <p>Nairobi, Kenya</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-4 hover:transform hover:translate-x-2 transition-transform">
+                                        <div class="btn btn-circle btn-primary btn-outline">
+                                            <i class="fas fa-clock"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-primary">Working Hours</h4>
+                                            <p>Mon - Fri: 9:00 AM - 6:00 PM</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="divider">Social Media</div>
+                                <div class="flex justify-center gap-4">
+                                    <a href="https://github.com/BotCoder254" class="btn btn-circle btn-outline hover:btn-primary transition-colors">
+                                        <i class="fab fa-github text-xl"></i>
+                                    </a>
+                                    <a href="#" class="btn btn-circle btn-outline hover:btn-primary transition-colors">
+                                        <i class="fab fa-linkedin text-xl"></i>
+                                    </a>
+                                    <a href="#" class="btn btn-circle btn-outline hover:btn-primary transition-colors">
+                                        <i class="fab fa-twitter text-xl"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card bg-base-100 shadow-xl">
+                            <div class="card-body">
+                                <form id="contact-form" class="space-y-4">
+                                    <div class="indicator w-full">
+                                        <span class="indicator-item badge badge-primary">Required</span>
+                                        <div class="form-control w-full">
+                                            <label class="label">
+                                                <span class="label-text">Name</span>
+                                            </label>
+                                            <input type="text" placeholder="Your Name" class="input input-bordered input-primary focus:input-primary" required />
+                                        </div>
+                                    </div>
+                                    <div class="indicator w-full">
+                                        <span class="indicator-item badge badge-primary">Required</span>
+                                        <div class="form-control w-full">
+                                            <label class="label">
+                                                <span class="label-text">Email</span>
+                                            </label>
+                                            <input type="email" placeholder="your.email@example.com" class="input input-bordered input-primary focus:input-primary" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-control">
+                                        <label class="label">
+                                            <span class="label-text">Subject</span>
+                                        </label>
+                                        <input type="text" placeholder="Message Subject" class="input input-bordered input-primary focus:input-primary" required />
+                                    </div>
+                                    <div class="indicator w-full">
+                                        <span class="indicator-item badge badge-primary">Required</span>
+                                        <div class="form-control w-full">
+                                            <label class="label">
+                                                <span class="label-text">Message</span>
+                                            </label>
+                                            <textarea class="textarea textarea-bordered textarea-primary h-32 focus:textarea-primary" placeholder="Your message here..." required></textarea>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary w-full gap-2 hover:gap-3 transition-all">
+                                        <i class="fas fa-paper-plane"></i>
+                                        Send Message
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer using DaisyUI footer component -->
+            <footer class="footer footer-center p-10 bg-base-200 text-base-content rounded">
+                <div class="grid grid-flow-col gap-4">
+                    <a href="#about" class="link link-hover">About</a> 
+                    <a href="#projects" class="link link-hover">Projects</a> 
+                    <a href="#contact" class="link link-hover">Contact</a>
+                </div> 
+                <div>
+                    <div class="join">
+                        <a href="https://github.com/BotCoder254" class="btn join-item btn-ghost">
+                            <i class="fab fa-github text-2xl"></i>
+                        </a>
+                        <a href="#" class="btn join-item btn-ghost">
+                            <i class="fab fa-linkedin text-2xl"></i>
+                        </a>
+                        <a href="#" class="btn join-item btn-ghost">
+                            <i class="fab fa-twitter text-2xl"></i>
+                        </a>
+                    </div>
+                </div> 
+                <div>
+                    <p>Copyright © 2024 - All rights reserved</p>
+                </div>
+            </footer>
+
+            <!-- Back to top button -->
+            <button onclick="scrollToTop()" id="back-to-top" class="btn btn-circle btn-primary fixed bottom-4 right-4 opacity-0 transition-opacity duration-300">
+                <i class="fas fa-arrow-up"></i>
+            </button>
+        </div> 
+
+        <!-- Mobile drawer menu -->
+        <div class="drawer-side z-50">
+            <label for="my-drawer-3" class="drawer-overlay"></label> 
+            <ul class="menu p-4 w-80 min-h-full bg-base-200">
+                <li class="mb-4">
+                    <div class="flex items-center gap-2">
+                        <div class="avatar online">
+                            <div class="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                                <img src="https://github.com/BotCoder254.png" alt="Logo" />
+                            </div>
+                        </div>
+                        <div>
+                            <span class="font-bold">BotCoder254</span>
+                            <div class="badge badge-sm">Full Stack Dev</div>
+                        </div>
+                    </div>
+                </li>
+                <div class="divider"></div>
+                <li><a href="#home" class="btn btn-ghost justify-start"><i class="fas fa-home mr-2"></i>Home</a></li>
+                <li><a href="#about" class="btn btn-ghost justify-start"><i class="fas fa-user mr-2"></i>About</a></li>
+                <li><a href="#projects" class="btn btn-ghost justify-start"><i class="fas fa-project-diagram mr-2"></i>Projects</a></li>
+                <li><a href="#contact" class="btn btn-ghost justify-start"><i class="fas fa-envelope mr-2"></i>Contact</a></li>
+                <div class="divider"></div>
+                <li>
+                    <label class="swap swap-rotate btn btn-ghost justify-start">
+                        <input type="checkbox" onclick="toggleTheme()" />
+                        <i class="fas fa-sun swap-on mr-2"></i>
+                        <i class="fas fa-moon swap-off mr-2"></i>
+                        <span class="swap-on">Light Mode</span>
+                        <span class="swap-off">Dark Mode</span>
+                    </label>
+                </li>
+                <div class="divider"></div>
+                <li>
+                    <a href="https://github.com/BotCoder254" target="_blank" class="btn btn-primary justify-start">
+                        <i class="fab fa-github mr-2"></i>View GitHub Profile
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="bottom-nav">
+        <a href="#home" class="active">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="#about">
+            <i class="fas fa-user"></i>
+            <span>About</span>
+        </a>
+        <a href="#projects">
+            <i class="fas fa-project-diagram"></i>
+            <span>Projects</span>
+        </a>
+        <a href="#contact">
+            <i class="fas fa-envelope"></i>
+            <span>Contact</span>
+        </a>
+        <a href="javascript:void(0)" onclick="toggleTheme()">
+            <i class="fas fa-moon"></i>
+            <span>Theme</span>
+        </a>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html> 

@@ -1,0 +1,30 @@
+services:
+  # Backend API service
+  - type: web
+    name: portfolio-backend
+    env: node
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      - key: EMAIL_USER
+        sync: false
+      - key: EMAIL_PASS
+        sync: false
+      - key: RECIPIENT_EMAIL
+        sync: false
+      - key: PORT
+        value: 3000
+
+  # Frontend static site
+  - type: web
+    name: portfolio-frontend
+    env: static
+    buildCommand: echo "Static site, no build needed"
+    staticPublishPath: ./
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: BACKEND_URL
+        value: https://portfolio-backend.onrender.com 
