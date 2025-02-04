@@ -27,4 +27,4 @@ services:
         destination: /index.html
     envVars:
       - key: BACKEND_URL
-        value: https://portfolio-backend.onrender.com 
+        value: https://portfolio-backend-8q07.onrender.com 
