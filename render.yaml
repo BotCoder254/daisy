@@ -20,7 +20,8 @@ services:
     name: portfolio-frontend
     env: static
     buildCommand: echo "Static site, no build needed"
-    staticPublishPath: ./
+    staticPublishPath: .
+    publishPath: .
     routes:
       - type: rewrite
         source: /*
