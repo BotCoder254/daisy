@@ -15,16 +15,12 @@ services:
       - key: PORT
         value: 3000
 
-  # Frontend web service
+  # Frontend web service with Docker
   - type: web
     name: portfolio-frontend
-    env: node
-    buildCommand: npm install -g serve && serve -s .
-    startCommand: serve -s . -l $PORT
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
+    env: docker
+    dockerfilePath: ./Dockerfile
+    dockerCommand: serve -s . -l $PORT
     envVars:
       - key: BACKEND_URL
         value: https://portfolio-backend-8q07.onrender.com
