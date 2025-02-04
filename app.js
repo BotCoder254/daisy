@@ -1,5 +1,6 @@
 // GitHub username
 const GITHUB_USERNAME = 'BotCoder254';
+const BACKEND_URL = 'https://portfolio-backend-8q07.onrender.com';
 
 // Current page for projects pagination
 let currentPage = 1;
@@ -36,7 +37,7 @@ function typeWriter(text, element, speed = 100) {
 async function fetchGitHubUser(retries = 3) {
     for (let i = 0; i < retries; i++) {
         try {
-            const response = await fetch('http://localhost:3000/api/github/user');
+            const response = await fetch(`${BACKEND_URL}/api/github/user`);
             
             if (!response.ok) {
                 throw new Error(`Backend API error: ${response.status} ${response.statusText}`);
@@ -203,7 +204,7 @@ async function fetchGitHubStats() {
 async function fetchAllRepositories(retries = 3) {
     for (let i = 0; i < retries; i++) {
         try {
-            const response = await fetch('http://localhost:3000/api/github/repos');
+            const response = await fetch(`${BACKEND_URL}/api/github/repos`);
             
             if (!response.ok) {
                 throw new Error(`Backend API error: ${response.status} ${response.statusText}`);
@@ -387,7 +388,7 @@ document.getElementById('contact-form').addEventListener('submit', async functio
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData.entries());
         
-        const response = await fetch('http://localhost:3000/api/contact', {
+        const response = await fetch(`${BACKEND_URL}/api/contact`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
