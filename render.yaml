@@ -15,17 +15,18 @@ services:
       - key: PORT
         value: 3000
 
-  # Frontend static site
+  # Frontend web service
   - type: web
     name: portfolio-frontend
-    env: static
-    buildCommand: echo "Static site, no build needed"
-    staticPublishPath: .
-    publishPath: .
+    env: node
+    buildCommand: npm install -g serve && serve -s .
+    startCommand: serve -s . -l $PORT
     routes:
       - type: rewrite
         source: /*
         destination: /index.html
     envVars:
       - key: BACKEND_URL
-        value: https://portfolio-backend-8q07.onrender.com 
+        value: https://portfolio-backend-8q07.onrender.com
+      - key: PORT
+        value: 10000 
