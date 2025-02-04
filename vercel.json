@@ -14,5 +14,8 @@
     ],
     "env": {
         "BACKEND_URL": "https://portfolio-backend-8q07.onrender.com"
+    },
+    "git": {
+        "submodules": false
     }
 } 

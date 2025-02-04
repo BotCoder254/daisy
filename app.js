@@ -567,6 +567,13 @@ function displayProjects(repos, clearGrid = true) {
 // Initialize with better error handling
 document.addEventListener('DOMContentLoaded', async () => {
     try {
+        // Set default theme to dark
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.querySelector('html').setAttribute('data-theme', savedTheme);
+        document.querySelectorAll('.swap input').forEach(input => {
+            input.checked = savedTheme === 'dark';
+        });
+
         // Show loading states
         const loadingElements = ['projects-grid', 'bio-content', 'calendar'];
         loadingElements.forEach(id => {
@@ -575,15 +582,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 element.innerHTML = '<div class="loading loading-spinner loading-lg"></div>';
             }
         });
-
-        // Load theme and initialize UI
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme) {
-            document.querySelector('html').setAttribute('data-theme', savedTheme);
-            document.querySelectorAll('.swap input').forEach(input => {
-                input.checked = savedTheme === 'dark';
-            });
-        }
 
         // Initialize typewriter effect
         const typewriterElement = document.querySelector('.typewriter');
