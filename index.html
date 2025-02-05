@@ -924,7 +924,7 @@
                                             <label class="label">
                                                 <span class="label-text">Name</span>
                                             </label>
-                                            <input type="text" placeholder="Your Name" class="input input-bordered input-primary focus:input-primary" required />
+                                            <input type="text" name="name" placeholder="Your Name" class="input input-bordered input-primary focus:input-primary" required />
                                         </div>
                                     </div>
                                     <div class="indicator w-full">
@@ -933,14 +933,14 @@
                                             <label class="label">
                                                 <span class="label-text">Email</span>
                                             </label>
-                                            <input type="email" placeholder="your.email@example.com" class="input input-bordered input-primary focus:input-primary" required />
+                                            <input type="email" name="email" placeholder="your.email@example.com" class="input input-bordered input-primary focus:input-primary" required />
                                         </div>
                                     </div>
                                     <div class="form-control">
                                         <label class="label">
                                             <span class="label-text">Subject</span>
                                         </label>
-                                        <input type="text" placeholder="Message Subject" class="input input-bordered input-primary focus:input-primary" required />
+                                        <input type="text" name="subject" placeholder="Message Subject" class="input input-bordered input-primary focus:input-primary" required />
                                     </div>
                                     <div class="indicator w-full">
                                         <span class="indicator-item badge badge-primary">Required</span>
@@ -948,10 +948,10 @@
                                             <label class="label">
                                                 <span class="label-text">Message</span>
                                             </label>
-                                            <textarea class="textarea textarea-bordered textarea-primary h-32 focus:textarea-primary" placeholder="Your message here..." required></textarea>
+                                            <textarea name="message" class="textarea textarea-bordered textarea-primary h-32 focus:textarea-primary" placeholder="Your message here..." required></textarea>
                                         </div>
                                     </div>
-                                    <button class="btn btn-primary w-full gap-2 hover:gap-3 transition-all">
+                                    <button type="submit" class="btn btn-primary w-full gap-2 hover:gap-3 transition-all">
                                         <i class="fas fa-paper-plane"></i>
                                         Send Message
                                     </button>

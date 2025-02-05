@@ -374,45 +374,6 @@ const updateElementText = (elementId, text) => {
     }
 };
 
-// Handle contact form submission
-document.getElementById('contact-form').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    
-    // Show loading state
-    const submitBtn = e.target.querySelector('button[type="submit"]');
-    const originalText = submitBtn.innerHTML;
-    submitBtn.innerHTML = '<span class="loading loading-spinner"></span> Sending...';
-    submitBtn.disabled = true;
-    
-    try {
-        const formData = new FormData(e.target);
-        const data = Object.fromEntries(formData.entries());
-        
-        const response = await fetch(`${BACKEND_URL}/api/contact`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data)
-        });
-        
-        const result = await response.json();
-        
-        if (!response.ok) {
-            throw new Error(result.error || 'Failed to send message');
-        }
-        
-        showToast('Message sent successfully!', 'success');
-        e.target.reset();
-    } catch (error) {
-        console.error('Error sending message:', error);
-        showToast(error.message || 'Failed to send message. Please try again.', 'error');
-    } finally {
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-    }
-});
-
 // Theme toggle functionality
 function toggleTheme() {
     const html = document.querySelector('html');
@@ -587,6 +548,62 @@ document.addEventListener('DOMContentLoaded', async () => {
         const typewriterElement = document.querySelector('.typewriter');
         if (typewriterElement) {
             typeWriter('Full Stack JavaScript Developer', typewriterElement);
+        }
+
+        // Handle contact form submission
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                // Show loading state
+                const submitBtn = contactForm.querySelector('.btn-primary');
+                if (!submitBtn) {
+                    console.error('Submit button not found');
+                    return;
+                }
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<span class="loading loading-spinner"></span> Sending...';
+                submitBtn.disabled = true;
+                
+                try {
+                    const formData = new FormData(e.target);
+                    const data = {
+                        name: formData.get('name'),
+                        email: formData.get('email'),
+                        subject: formData.get('subject'),
+                        message: formData.get('message')
+                    };
+
+                    // Validate form data
+                    if (!data.name || !data.email || !data.message) {
+                        throw new Error('Please fill in all required fields');
+                    }
+                    
+                    const response = await fetch(`${BACKEND_URL}/api/contact`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(data)
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if (!response.ok) {
+                        throw new Error(result.error || 'Failed to send message');
+                    }
+                    
+                    showToast('Message sent successfully!', 'success');
+                    e.target.reset();
+                } catch (error) {
+                    console.error('Error sending message:', error);
+                    showToast(error.message || 'Failed to send message. Please try again.', 'error');
+                } finally {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }
+            });
         }
 
         // Fetch GitHub data with retries
