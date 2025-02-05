@@ -46,15 +46,16 @@
         }
 
         /* Responsive Styles */
-        @media (max-width: 768px) {
+        /* Small screens (mobile phones) */
+        @media (min-width: 320px) {
             .hero-content {
-                padding-top: 6rem !important;
+                padding-top: 4rem !important;
                 flex-direction: column !important;
-                gap: 2rem !important;
+                gap: 1rem !important;
             }
 
             .hero-content .avatar {
-                display: none !important;
+                display: block !important;
             }
 
             .hero-content > div:last-child {
@@ -65,294 +66,195 @@
             .hero .stats {
                 width: 100% !important;
             }
-            .avatar img {
-                width: 200px !important;
-                height: 200px !important;
-            }
-            .stats {
-                flex-direction: column !important;
-            }
-            .stats > .stat {
-                border-right: none !important;
-                border-bottom: 1px solid var(--fallback-bc,oklch(var(--bc)/0.1)) !important;
-            }
-            .stats > .stat:last-child {
-                border-bottom: none !important;
-            }
-            .calendar {
-                max-width: 100% !important;
-                overflow-x: auto !important;
-                -webkit-overflow-scrolling: touch !important;
-            }
-            .grid-cols-3 {
-                grid-template-columns: repeat(2, 1fr) !important;
-            }
-            .card-body {
-                padding: 1rem !important;
-            }
-            .badge {
-                white-space: nowrap !important;
-                overflow: hidden !important;
-                text-overflow: ellipsis !important;
-                max-width: 150px !important;
-            }
-            .join {
-                flex-wrap: wrap !important;
-                gap: 0.5rem !important;
-            }
-            .join > * {
-                flex: 1 1 auto !important;
-                min-width: 120px !important;
-            }
-            .tabs {
-                flex-wrap: wrap !important;
-                gap: 0.5rem !important;
-            }
-            .tab {
-                flex: 1 1 auto !important;
-                min-width: 120px !important;
-            }
-        }
 
-        @media (max-width: 480px) {
-            .hero-content {
-                padding-top: 2rem !important;
-            }
             .avatar img {
                 width: 150px !important;
                 height: 150px !important;
             }
-            .text-5xl {
-                font-size: 2.5rem !important;
-                line-height: 1.2 !important;
+
+            .stats {
+                flex-direction: column !important;
             }
-            .grid-cols-2 {
-                grid-template-columns: 1fr !important;
+
+            .grid-cols-3 {
+                grid-template-columns: repeat(1, 1fr) !important;
             }
-            .card {
-                margin-bottom: 1rem !important;
+
+            .card-body {
+                padding: 1rem !important;
             }
+
+            .badge {
+                white-space: nowrap !important;
+                overflow: hidden !important;
+                text-overflow: ellipsis !important;
+                max-width: 120px !important;
+            }
+
+            .join {
+                flex-wrap: wrap !important;
+                gap: 0.5rem !important;
+            }
+
             .join > * {
+                flex: 1 1 100% !important;
                 min-width: 100% !important;
-                margin-bottom: 0.5rem !important;
             }
-            .timeline.timeline-vertical {
-                --timeline-divider-gap: 1rem !important;
+
+            .tabs {
+                flex-wrap: wrap !important;
+                gap: 0.5rem !important;
             }
-            .timeline-start, .timeline-end {
-                width: 100% !important;
-                text-align: left !important;
-                padding-left: 1.5rem !important;
+
+            .tab {
+                flex: 1 1 auto !important;
+                min-width: 100% !important;
             }
-            .calendar-graph text.wday,
-            .calendar-graph text.month {
-                font-size: 8px !important;
+        }
+
+        /* Tablets */
+        @media (min-width: 768px) {
+            .hero-content {
+                padding-top: 6rem !important;
+                flex-direction: row !important;
+                gap: 2rem !important;
             }
-            .calendar-graph .contribution-graph {
-                transform: scale(0.8) !important;
-                transform-origin: left !important;
+
+            .avatar img {
+                width: 200px !important;
+                height: 200px !important;
+            }
+
+            .grid-cols-3 {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+
+            .stats {
+                flex-direction: row !important;
+            }
+
+            .join > * {
+                flex: 1 1 auto !important;
+                min-width: 120px !important;
+            }
+
+            .badge {
+                max-width: 150px !important;
+            }
+
+            .tab {
+                min-width: auto !important;
+            }
+        }
+
+        /* Large tablets/small desktops */
+        @media (min-width: 992px) {
+            .hero-content {
+                padding-top: 4rem !important;
+                gap: 3rem !important;
+            }
+
+            .avatar img {
+                width: 220px !important;
+                height: 220px !important;
+            }
+
+            .grid-cols-3 {
+                grid-template-columns: repeat(3, 1fr) !important;
+            }
+
+            .badge {
+                max-width: none !important;
+            }
+        }
+
+        /* Large desktops */
+        @media (min-width: 1200px) {
+            .hero-content {
+                padding-top: 2rem !important;
+                gap: 4rem !important;
+            }
+
+            .avatar img {
+                width: 256px !important;
+                height: 256px !important;
+            }
+
+            .container {
+                max-width: 1140px !important;
+                margin: 0 auto !important;
             }
         }
 
         /* Fix GitHub Calendar */
-        .js-calendar-graph-svg {
-            max-width: 100% !important;
-        }
         .calendar {
-            font-family: inherit !important;
-        }
-        .calendar-graph text.wday,
-        .calendar-graph text.month {
-            fill: currentColor !important;
-        }
-
-        /* Fix Project Cards */
-        #projects-grid .card {
-            height: 100% !important;
-            display: flex !important;
-            flex-direction: column !important;
-        }
-        #projects-grid .card-body {
-            flex: 1 !important;
-            display: flex !important;
-            flex-direction: column !important;
-        }
-        #projects-grid .card-actions {
-            margin-top: auto !important;
-        }
-
-        /* Fix Form Elements */
-        .form-control {
             width: 100% !important;
-        }
-        .input, .textarea {
-            width: 100% !important;
-            max-width: 100% !important;
-        }
-        .indicator {
-            width: 100% !important;
-        }
-        .indicator-item {
-            right: -0.5rem !important;
+            overflow: hidden !important;
+            border-radius: 0.5rem !important;
+            background: var(--b1) !important;
         }
 
-        /* Fix Navigation */
-        .drawer-side {
-            overflow-y: auto !important;
-            -webkit-overflow-scrolling: touch !important;
-        }
-        .drawer-side .menu {
-            padding-top: 1rem !important;
-        }
-        .drawer-side .menu-title {
-            padding: 0.5rem 1rem !important;
-        }
-
-        /* Improved Hero Section Responsiveness */
-        .hero-content {
-            gap: 2rem !important;
-            padding: 2rem !important;
-            flex-direction: column-reverse !important;
-        }
-
-        @media (min-width: 1024px) {
-            .hero-content {
-                flex-direction: row-reverse !important;
-                padding: 4rem 2rem !important;
+        @media (min-width: 320px) {
+            .calendar-graph {
+                padding: 0.5rem !important;
             }
-        }
 
-        .hero .avatar img {
-            width: 200px !important;
-            height: 200px !important;
-            transition: all 0.3s ease !important;
+            .calendar-graph text.wday,
+            .calendar-graph text.month {
+                font-size: 8px !important;
+            }
+
+            .js-calendar-graph-svg {
+                transform: scale(0.7) !important;
+                transform-origin: left !important;
+            }
         }
 
         @media (min-width: 768px) {
-            .hero .avatar img {
-                width: 256px !important;
-                height: 256px !important;
-            }
-        }
-
-        /* Improved Navigation Responsiveness */
-        .navbar {
-            padding: 0.5rem !important;
-            height: auto !important;
-            min-height: 4rem !important;
-        }
-
-        .navbar-start {
-            width: auto !important;
-        }
-
-        @media (max-width: 1023px) {
-            .navbar {
-                padding: 0.5rem 1rem !important;
-            }
-            
-            .drawer-side {
-                padding-top: 1rem !important;
-            }
-
-            .drawer-side .menu {
+            .calendar-graph {
                 padding: 1rem !important;
             }
 
-            .drawer-side .menu-title {
-                padding: 0.5rem !important;
+            .calendar-graph text.wday,
+            .calendar-graph text.month {
+                font-size: 9px !important;
             }
 
-            .drawer-side a {
-                padding: 0.75rem 1rem !important;
-            }
-        }
-
-        /* Improved Section Responsiveness */
-        section {
-            padding: 4rem 1rem !important;
-        }
-
-        @media (min-width: 768px) {
-            section {
-                padding: 4rem 2rem !important;
+            .js-calendar-graph-svg {
+                transform: scale(0.85) !important;
             }
         }
 
-        /* Card Grid Responsiveness */
-        .grid {
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
-            gap: 1.5rem !important;
-        }
-
-        /* Stats Responsiveness */
-        .stats {
-            flex-direction: column !important;
-        }
-
-        @media (min-width: 768px) {
-            .stats {
-                flex-direction: row !important;
+        @media (min-width: 992px) {
+            .js-calendar-graph-svg {
+                transform: scale(0.95) !important;
             }
         }
 
-        /* Form Responsiveness */
-        .form-control {
-            width: 100% !important;
-        }
-
-        .input, .textarea {
-            width: 100% !important;
-            max-width: 100% !important;
-        }
-
-        /* Timeline Responsiveness */
-        .timeline.timeline-vertical {
-            --timeline-divider-gap: 1rem !important;
-        }
-
-        @media (max-width: 767px) {
-            .timeline-start, .timeline-end {
-                width: 100% !important;
-                text-align: left !important;
-                padding-left: 1.5rem !important;
+        @media (min-width: 1200px) {
+            .js-calendar-graph-svg {
+                transform: scale(1) !important;
             }
         }
 
-        /* Improved Mobile Menu */
-        .drawer-side {
-            background-color: var(--b3) !important;
-            backdrop-filter: none !important;
-            -webkit-backdrop-filter: none !important;
+        /* Fix Mobile Navigation */
+        @media (min-width: 320px) {
+            .bottom-nav {
+                display: flex !important;
+            }
+
+            .drawer-side {
+                display: none !important;
+            }
         }
 
-        .drawer-side .menu {
-            background: transparent !important;
-        }
+        @media (min-width: 992px) {
+            .bottom-nav {
+                display: none !important;
+            }
 
-        .drawer-side .menu a {
-            margin-bottom: 0.5rem !important;
-            border-radius: 0.5rem !important;
-        }
-
-        .drawer-side .menu a:hover {
-            background-color: var(--p) !important;
-            color: var(--pc) !important;
-        }
-
-        /* Fix GitHub Calendar on Mobile */
-        .calendar-graph {
-            overflow-x: auto !important;
-            -webkit-overflow-scrolling: touch !important;
-        }
-
-        .js-calendar-graph-svg {
-            min-width: 730px !important;
-        }
-
-        @media (max-width: 767px) {
-            .calendar-graph {
-                padding: 0.5rem !important;
+            .drawer-side {
+                display: block !important;
             }
         }
 
@@ -392,59 +294,6 @@
 
             .hero .stats {
                 width: 100% !important;
-            }
-        }
-
-        /* Fix GitHub Contribution Graph */
-        .calendar {
-            width: 100% !important;
-            overflow: hidden !important;
-            border-radius: 0.5rem !important;
-            background: var(--b1) !important;
-        }
-
-        .calendar-graph {
-            padding: 1rem !important;
-            width: 100% !important;
-            overflow-x: auto !important;
-            -webkit-overflow-scrolling: touch !important;
-            scrollbar-width: thin !important;
-            scrollbar-color: var(--p) var(--b2) !important;
-        }
-
-        .calendar-graph::-webkit-scrollbar {
-            height: 6px !important;
-        }
-
-        .calendar-graph::-webkit-scrollbar-track {
-            background: var(--b2) !important;
-            border-radius: 3px !important;
-        }
-
-        .calendar-graph::-webkit-scrollbar-thumb {
-            background: var(--p) !important;
-            border-radius: 3px !important;
-        }
-
-        .js-calendar-graph-svg {
-            min-width: 730px !important;
-            height: auto !important;
-            padding: 0.5rem !important;
-        }
-
-        @media (max-width: 767px) {
-            .calendar {
-                margin: 0 -1rem !important;
-                border-radius: 0 !important;
-            }
-
-            .calendar-graph {
-                padding: 0.5rem !important;
-            }
-
-            .calendar-graph text.wday,
-            .calendar-graph text.month {
-                font-size: 9px !important;
             }
         }
 
