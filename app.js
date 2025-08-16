@@ -1,6 +1,6 @@
 // GitHub username
 const GITHUB_USERNAME = 'BotCoder254';
-const BACKEND_URL = 'https://portfolio-backend-8q07.onrender.com';
+const BACKEND_URL = 'https://portfolio-backend-a8cx.onrender.com';
 
 // Current page for projects pagination
 let currentPage = 1;
